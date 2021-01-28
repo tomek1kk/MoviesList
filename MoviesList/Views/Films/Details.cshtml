@@ -1,0 +1,109 @@
+﻿@model FilmViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Film details</h4>
+    <hr />
+    @if (Model == null)
+    {
+        <h5>Film not found</h5>
+    }
+    else
+    {
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EpisodeId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EpisodeId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.OpeningCrawl)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OpeningCrawl)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Director)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Director)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Producer)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Producer)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ReleaseDate)
+            </dd>
+            <dt class="col-sm-2">
+                Characters
+            </dt>
+            <dd class="col-sm-10">
+                @foreach (var person in Model.Characters)
+                {
+                    <span> @person, </span>
+                }
+            </dd>
+            <dt class="col-sm-2">
+                Planets
+            </dt>
+            <dd class="col-sm-10">
+                @foreach (var planet in Model.Planets)
+                {
+                    <span> @planet, </span>
+                }
+            </dd>
+            <dt class="col-sm-2">
+                Starships
+            </dt>
+            <dd class="col-sm-10">
+                @foreach (var starship in Model.Starships)
+                {
+                    <span> @starship, </span>
+                }
+            </dd>
+            <dt class="col-sm-2">
+                Vehicles
+            </dt>
+            <dd class="col-sm-10">
+                @foreach (var vehicle in Model.Vehicles)
+                {
+                    <span> @vehicle, </span>
+                }
+            </dd>
+        </dl>
+        <h5>Average score: @Model?.AverageScore </h5>
+        <h5>Rate film:</h5>
+        <form asp-action="RateFilm" asp-route-id="@Model.Id" method="post">
+            @Html.TextBoxFor(m => m.Score, new
+            {
+                @requried = "required",
+                @type = "number",
+                @max = 10,
+                @min = 0
+            })
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    }
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

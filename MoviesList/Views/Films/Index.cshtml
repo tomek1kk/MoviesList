@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FilmViewModel>
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>List of films</h1>
+<br/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(film => film.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(film => film.Director)
+            </th>
+            <th>
+                @Html.DisplayNameFor(film => film.ReleaseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(film => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(film => item.Director)
+            </td>
+            <td>
+                @Html.DisplayFor(film => item.ReleaseDate)
+            </td>
+
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" asp-route-url="@item.Url" class="btn btn-primary">Details</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
