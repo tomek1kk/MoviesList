@@ -33,7 +33,7 @@ namespace MoviesList.Models
             url = url.EndsWith('/') ? url.Remove(url.Length - 1) : url;
             string idString = url.Substring(url.LastIndexOf('/') + 1);
             if (!int.TryParse(idString, out int id))
-                throw new Exception("Url has invalid format");
+                throw new ArgumentException("Url has invalid format");
             return id;
         }
     }

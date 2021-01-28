@@ -40,7 +40,7 @@ namespace MoviesListTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(ArgumentException))]
         public void GetId_InvalidUrl_ShouldThrowException()
         {
             // Assign
