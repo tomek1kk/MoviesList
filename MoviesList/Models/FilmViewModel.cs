@@ -27,6 +27,8 @@ namespace MoviesList.Models
         // Example: "https://swapi.dev/api/films/1/" => 1
         private int GetFilmId(string url)
         {
+            if (url == null)
+                throw new ArgumentException("url cannot be null");
             // Check if there is '/' at the end of input and remove if so
             url = url.EndsWith('/') ? url.Remove(url.Length - 1) : url;
             string idString = url.Substring(url.LastIndexOf('/') + 1);
